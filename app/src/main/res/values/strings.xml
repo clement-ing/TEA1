@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TEA1</string>
+    <string name="titleMain">MainActivity</string>
+    <string name="Pseudo">Pseudo : </string>
+    <string name="OK">OK</string>
+    <string name="lastPseudo">lastPseudo</string>
+    <string name="menu_item_1">Ressources</string>
+    <string name="ressources">Ressources</string>
+    <string name="activity_main_title">main activity</string>
+    <string name="lastpseudo">LastPseudo</string>
+    <string name="listtitle">listTitle</string>
+</resources>
