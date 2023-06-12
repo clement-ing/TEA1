@@ -29,29 +29,27 @@ class MainActivity : AppCompatActivity() {
         editText.setText(sharedPreferences.getString("pseudo","NoPseudo"))
 
         btnOK.setOnClickListener {
-            val pseudoInput = findViewById<EditText>(R.id.edtPseudo).text.toString() //pseudo entre
+            val pseudoInput = findViewById<EditText>(R.id.edtPseudo).text.toString() //pseudo entré
             val pseudos = sharedPreferences.getStringSet("pseudos",mutableSetOf(""))
             //on ajoute le pseudo a la liste des pseudos si il est nouveau
             if (pseudos?.contains(pseudoInput) == false){
+                Log.i("nouvel utilisateur","$pseudoInput")
                 pseudos.add(pseudoInput)
                 editor.putStringSet("pseudos", pseudos)
                 editor.apply()
                 //on implémente une liste basique pour le nouvel utilisateur
                 val gson = Gson()
-                val defaultObject = ChoixListActivity.DataType(
-                    listOf("Liste 1"),
-                    listOf(listOf(Item("Item1", false)))
-                )
+                val defaultObject = TitlesList(pseudoInput)
                 val jsonString = gson.toJson(defaultObject)
+                Log.i("JSONString:", "$jsonString")
                 editor.putString("$pseudoInput", jsonString)
                 editor.apply()
             }
             //on met a jour le pseudo actuel
             editor.putString("pseudo", pseudoInput)
             editor.apply()
-
+            //val intent = Intent(this, ShowListActivity::class.java)
             val intent = Intent(this, ChoixListActivity::class.java)
-            //Log.i("pseudoInput", pseudoInput)
             //intent.putExtra("name", pseudoInput)
             //on pourrait egalement recuperer ce pseudo depuis les preferences
             startActivity(intent)
@@ -80,6 +78,10 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
 
         }
+    }
+
+    fun checkInternet(){
+
     }
 
 }
